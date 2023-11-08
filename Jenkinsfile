@@ -30,7 +30,7 @@ pipeline {
 
     stage('deploy') {
      steps {
-            sh "rsync -azh --info=progress2 --info=name0 -e $SSH_COMMAND  /var/lib/jenkins/workspace/hello-second/ ubuntu@3.81.114.150:/frontproject/"
+            sh "rsync -azh --info=progress2 --info=name0 -e $SSH_COMMAND  /var/lib/jenkins/workspace/hello-second/ ubuntu@3.81.114.150:/www/"
        }
      }
   }
