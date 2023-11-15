@@ -1,6 +1,8 @@
 pipeline {
     agent any
-
+      tools {
+       nodejs 'nodejs-20.5.0'
+      }
     environment {
         PATH = "$PATH:/usr/bin/node"
         SSH_COMMAND = "ssh -i /var/lib/jenkins/.ssh/id_rsa"
