@@ -27,6 +27,15 @@ pipeline {
           }
         }
 
+         stage('Update Browserslist') {
+            steps {
+                script {
+                    echo 'Updating Browserslist database...'
+                    sh 'npx browserslist@latest --update-db'
+                }
+            }
+        }
+
         stage('SonarQube analysis') {
             steps {
                 withSonarQubeEnv('sonar') {
