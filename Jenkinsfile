@@ -19,9 +19,6 @@ pipeline {
       }
      steps {
          script {
-             echo 'Updating npm...'
-             sh 'npm install -g npm@latest'
-
              echo 'Installing dependencies...'
              sh 'npm install'
 
