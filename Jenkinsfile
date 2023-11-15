@@ -13,19 +13,24 @@ pipeline {
             }
         }
 
-       stage('Build') {
-          steps {
-             timeout(time: 15, unit: 'MINUTES') {
-                 script {
-                     echo 'Installing dependencies...'
-                     sh 'npm install'
+     stage('Build') {
+     options {
+         timeout(time: 10, unit: 'MINUTES')
+      }
+     steps {
+         script {
+             echo 'Updating npm...'
+             sh 'npm install -g npm@latest'
 
-                     echo 'Building the app...'
-                     sh 'npm run build'
-                 }
-             }
-          }
-        }
+             echo 'Installing dependencies...'
+             sh 'npm install'
+
+             echo 'Building the app...'
+             sh 'npm run build'
+         }
+     }
+ }
+
 
          stage('Update Browserslist') {
             steps {
