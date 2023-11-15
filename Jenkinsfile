@@ -15,27 +15,45 @@ pipeline {
 
        stage('Build') {
           steps {
-             timeout(time: 10, unit: 'MINUTES') {
-                 sh 'npm install'
-                 sh 'npm run build'
-            }
+             timeout(time: 15, unit: 'MINUTES') {
+                 script {
+                     echo 'Installing dependencies...'
+                     sh 'npm install'
+
+                     echo 'Building the app...'
+                     sh 'npm run build'
+                 }
+             }
           }
         }
-
 
         stage('SonarQube analysis') {
             steps {
                 withSonarQubeEnv('sonar') {
-                    sh "npm install sonar-scanner"
-                    sh "npm run sonar-scanner"
+                    script {
+                        echo 'Installing SonarScanner...'
+                        sh "npm install sonar-scanner"
+
+                        echo 'Running SonarScanner...'
+                        sh "npm run sonar-scanner"
+                    }
                 }
             }
         }
 
-    stage('deploy') {
-     steps {
-            sh "rsync -azh --info=progress2 --info=name0 -e $SSH_COMMAND  /var/lib/jenkins/workspace/ ubuntu@3.81.114.150:/home/ubuntu/host/"
-       }
-     }
-  }
+        stage('Deploy') {
+            steps {
+                script {
+                    echo 'Deploying to the server...'
+                    sh "rsync -azh --info=progress2 --info=name0 -e $SSH_COMMAND /var/lib/jenkins/workspace/ ubuntu@3.81.114.150:/home/ubuntu/host/"
+                }
+            }
+        }
+    }
+
+    post {
+        always {
+            cleanWs()
+        }
+    }
 }
