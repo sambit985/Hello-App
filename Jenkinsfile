@@ -13,11 +13,14 @@ pipeline {
             }
         }
 
-        stage('Build') {
-            steps {
-                sh 'npm install'
+       stage('Build') {
+          steps {
+             timeout(time: 10, unit: 'MINUTES') {
+             sh 'npm install'
             }
+          }
         }
+
 
         stage('SonarQube analysis') {
             steps {
@@ -30,7 +33,7 @@ pipeline {
 
     stage('deploy') {
      steps {
-            sh "rsync -azh --info=progress2 --info=name0 -e $SSH_COMMAND  /var/lib/jenkins/workspace/hellohost/ ubuntu@3.81.114.150:/host/"
+            sh "rsync -azh --info=progress2 --info=name0 -e $SSH_COMMAND  /var/lib/jenkins/workspace/ ubuntu@3.81.114.150:/home/ubuntu/host/"
        }
      }
   }
