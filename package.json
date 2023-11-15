@@ -18,12 +18,6 @@
     "eject": "react-scripts eject",
     "sonar-scanner": "sonar-scanner"
   },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
-  },
   "browserslist": {
     "production": [
       ">0.2%",
