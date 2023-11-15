@@ -28,7 +28,6 @@ pipeline {
      }
  }
 
-
          stage('Update Browserslist') {
             steps {
                 script {
