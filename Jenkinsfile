@@ -10,7 +10,7 @@ pipeline {
     stages {
         stage('GetCode') {
             steps {
-                git branch: 'master', url: 'https://github.com/sambit985/api-test.git'
+                git branch: 'master', url: 'https://github.com/sambit985/Hello-App.git'
             }
         }
 
