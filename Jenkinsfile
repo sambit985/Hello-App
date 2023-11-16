@@ -20,7 +20,7 @@ pipeline {
                     echo 'Installing Node.js and npm...'
                     sh 'env'
                     sh 'ls -la /var/lib/jenkins/.nvm'
-                    sh 'export NVM_DIR="$HOME/.nvm" && [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" && nvm install 18'
+                    sh 'export NVM_DIR="$HOME/.nvm" && [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" && nvm install 14'
                     sh 'npm install'
                 }
             }
