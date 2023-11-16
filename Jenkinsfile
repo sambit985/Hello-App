@@ -38,6 +38,7 @@ pipeline {
      stage('SonarQube analysis') {
             steps {
                 withSonarQubeEnv('sonar') {
+                    sh 'export NODE_OPTIONS="--max-old-space-size=4000"'
                     sh "npm install -g browserslist" // Install browserslist globally
                     sh "npx browserslist@latest --update-db" // Update Browserslist data
                     sh "npm install sonar-scanner"
